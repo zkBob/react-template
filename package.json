@@ -17,7 +17,7 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
-    "zkbob-client-js": "^3.3.0"
+    "zkbob-client-js": "^5.2.0"
   },
   "scripts": {
     "start": "react-app-rewired start",

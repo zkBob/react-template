@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {
   ZkBobClient, ClientConfig, AccountConfig,
-  ProverMode, TransferRequest, deriveSpendingKeyZkBob, TxType
+  ProverMode, TransferRequest, deriveSpendingKeyZkBob, TxType, DepositType
 } from 'zkbob-client-js';
 import { btoa } from 'buffer';
 import { hexToBuf } from 'zkbob-client-js/lib/utils';
@@ -17,10 +17,10 @@ async function withdrawShielded(amount: bigint, external_addr: string, client: Z
 
   const ready = await client.waitReadyToTransact();
   if (ready) {
-    const txFee = (await client.feeEstimate([amount], TxType.Transfer, false));
+    const txFee = (await client.feeEstimate([amount], TxType.Transfer, BigInt(0), false));
 
     console.log('Making a withdrawal...');
-    const jobIds: string[] = await client.withdrawMulti(external_addr, amount, txFee.totalPerTx);
+    const jobIds: string[] = await client.withdrawMulti(external_addr, amount, BigInt(0), txFee.relayerFee);
     console.log('Please wait relayer provide txHash%s %s...', jobIds.length > 1 ? 'es for jobs' : ' for job', jobIds.join(', '));
 
     return await client.waitJobsTxHashes(jobIds);
@@ -47,7 +47,8 @@ function App() {
           'delegatedProverUrls': [],
           // file with archived pool state
           // (optional, needed to reduce sync time)
-          'coldStorageConfigPath': ''
+          'coldStorageConfigPath': '',
+          'depositScheme': DepositType.SaltedPermit
         }
       },
       chains: {
@@ -67,8 +68,8 @@ function App() {
     const client = await ZkBobClient.create(clientConfig, 'BOB-sepolia');
 
     // now you can get relayer fee or pool limits for example
-    const relayerFee = await client.atomicTxFee();
-    console.log(`Relayer default fee: ${relayerFee} Gwei`);
+    const relayerFee = await client.atomicTxFee(TxType.Deposit);
+    console.log(`Relayer deposit fee: ${relayerFee} Gwei`);
     console.log(`Pool deposit total limit: ${(await client.getLimits(undefined)).deposit.total} Gwei`);
 
     // now let's attach account generated from the arbitrary 12-words mnemonic:
