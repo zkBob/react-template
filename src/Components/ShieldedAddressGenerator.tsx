@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import ZkClientContext from "../Context/ZkClient";
-export const Address = () => {
+export const ShieldedAddressGenerator = () => {
 
     const { zkClient } = useContext(ZkClientContext);
 

@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { createContext, useState, ReactNode, FC } from "react";
 import { ZkBobClient, AccountConfig, ClientConfig, ProverMode, deriveSpendingKeyZkBob } from "zkbob-client-js";
 import { hexToBuf } from "zkbob-client-js/lib/utils";
-import { clientConfig } from "../config";
+import { config } from "../config";
 interface Props {
   children: React.ReactNode;
 }
@@ -28,7 +28,7 @@ export const ZkClientProvider = (props: ZkClientProviderProps) => {
 
 
   async function login(): Promise<void> {
-    const client = await ZkBobClient.create(clientConfig, 'BOB-sepolia');
+    const client = await ZkBobClient.create(config, 'BOB-sepolia');
     const mnemonic = ethers.utils.entropyToMnemonic(hexToBuf("9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"))
     const accountConfig: AccountConfig = {
       sk: deriveSpendingKeyZkBob(mnemonic),

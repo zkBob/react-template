@@ -1,6 +1,6 @@
-import { ClientConfig } from "zkbob-client-js";
+import { ClientConfig, DepositType } from "zkbob-client-js";
 
-export const clientConfig:ClientConfig = {
+export const config:ClientConfig = {
     pools: {
       'BOB-sepolia': {
         'chainId': 11155111,
@@ -8,7 +8,8 @@ export const clientConfig:ClientConfig = {
         'tokenAddress': '0x2C74B18e2f84B78ac67428d0c7a9898515f0c46f',
         'relayerUrls': ['https://relayer.thgkjlr.website/'],
         'delegatedProverUrls': [],
-        'coldStorageConfigPath': ''
+        'coldStorageConfigPath': '',
+        'depositScheme':DepositType.PermitV2
       }
     },
     chains: {
