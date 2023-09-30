@@ -1,35 +1,35 @@
-import { useWalletClient } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
-import { sepolia, polygon, goerli, optimism, optimismGoerli } from 'wagmi/chains';
-import { InjectedConnector } from 'wagmi/connectors/injected';
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
-import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy';
-import { ReactNode } from 'react';
-import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { HttpTransportConfig } from 'viem';
+// import { useWalletClient } from 'wagmi';
+// import { publicProvider } from 'wagmi/providers/public';
+// import { sepolia, polygon, goerli, optimism, optimismGoerli } from 'wagmi/chains';
+// import { InjectedConnector } from 'wagmi/connectors/injected';
+// import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+// import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy';
+// import { ReactNode } from 'react';
+// import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi'
+// import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+// import { HttpTransportConfig } from 'viem';
 
-interface PropsWithChildren  {
-    children: ReactNode
-}
+// interface PropsWithChildren  {
+//     children: ReactNode
+// }
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [goerli],
-    [publicProvider()],
-)
+// const { chains, publicClient, webSocketPublicClient } = configureChains(
+//     [goerli],
+//     [publicProvider()],
+// )
 
-const injected: InjectedConnector = new InjectedConnector({
-    chains,
-    options: {
-        name: 'MetaMask',
-    },
-});
-const config = createConfig({
-    autoConnect: true,
-    publicClient,
-    webSocketPublicClient,
-    // connectors: [injected, walletConnectV1]
-})
+// const injected: InjectedConnector = new InjectedConnector({
+//     chains,
+//     options: {
+//         name: 'MetaMask',
+//     },
+// });
+// const config = createConfig({
+//     autoConnect: true,
+//     publicClient,
+//     webSocketPublicClient,
+//     // connectors: [injected, walletConnectV1]
+// })
 
 
 // const walletConnectV1 = new WalletConnectLegacyConnector({
@@ -50,8 +50,11 @@ const config = createConfig({
 
 
 
-export default (props: PropsWithChildren) => (
-    <WagmiConfig config={config}>
-        {props.children}
-    </WagmiConfig>
-);
+// export default (props: PropsWithChildren) => (
+//     <WagmiConfig config={config}>
+//         {props.children}
+//     </WagmiConfig>
+// );
+
+
+export {};

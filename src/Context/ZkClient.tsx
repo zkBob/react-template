@@ -29,18 +29,18 @@ export const ZkClientProvider = (props: ZkClientProviderProps) => {
 
   async function login(): Promise<void> {
     const client = await ZkBobClient.create(config, 'BOB-sepolia');
-    const mnemonic = ethers.utils.entropyToMnemonic(hexToBuf("9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"))
-    const accountConfig: AccountConfig = {
-      sk: deriveSpendingKeyZkBob(mnemonic),
-      pool: 'BOB-sepolia',
-      birthindex: -1,
-      proverMode: ProverMode.Local,
-    };
-    await client.login(accountConfig);
+    // const mnemonic = "general team spot pass shoulder domain axis crazy since kind athlete buzz"
+    // const accountConfig: AccountConfig = {
+    //   sk: deriveSpendingKeyZkBob("general team spot pass shoulder domain axis crazy since kind athlete buzz"),
+    //   pool: 'BOB-sepolia',
+    //   birthindex: -1,
+    //   proverMode: ProverMode.Local,
+    // };
+    // await client.login(accountConfig);
 
-    console.log(`Shielded account balance: ${await client.getTotalBalance()} Gwei`);
-    console.log(client)
-    setZkClient(client);
+    // console.log(`Shielded account balance: ${await client.getTotalBalance()} Gwei`);
+    // console.log(client)
+    // setZkClient(client);
   }
 
   return <ZkClientContext.Provider value={{ zkClient, login }} >
